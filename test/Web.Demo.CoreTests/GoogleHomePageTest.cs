@@ -1,4 +1,4 @@
-using Web.Tests.PageObjects;
+using Web.Tests.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 

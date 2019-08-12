@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using OpenQA.Selenium;
 
-namespace Web.Tests.PageObjects
+namespace Web.Tests.Model
 {
     public class GoogleHomePage : CorePage
     {
