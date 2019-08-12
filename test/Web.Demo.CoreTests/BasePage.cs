@@ -2,7 +2,7 @@
 using Web.TestFramework;
 using OpenQA.Selenium;
 
-namespace Web.Demo.CoreTests
+namespace Web.Tests
 {
     public class CorePage : WebPage
     {

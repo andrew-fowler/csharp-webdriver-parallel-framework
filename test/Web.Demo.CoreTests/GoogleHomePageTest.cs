@@ -1,8 +1,8 @@
-using Web.Demo.CoreTests.PageObjects;
+using Web.Tests.PageObjects;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 
-namespace Web.Demo.CoreTests
+namespace Web.Tests
 {
     [TestClass]
     public class GoogleHomePageTest : BaseTest

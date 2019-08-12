@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.TestFramework", "src\Web.TestFramework\Web.TestFramework.csproj", "{AE16A914-64DE-4911-B71D-0645314CBFD2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Demo.CoreTests", "test\Web.Demo.CoreTests\Web.Demo.CoreTests.csproj", "{9897720B-8513-41C6-B985-C0BB79EBB205}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Tests", "test\Web.Demo.CoreTests\Web.Tests.csproj", "{9897720B-8513-41C6-B985-C0BB79EBB205}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

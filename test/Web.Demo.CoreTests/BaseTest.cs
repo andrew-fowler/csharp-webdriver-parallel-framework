@@ -3,7 +3,7 @@ using Web.TestFramework;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 [assembly: Parallelize(Workers = 0, Scope = ExecutionScope.MethodLevel)]
-namespace Web.Demo.CoreTests
+namespace Web.Tests
 {
     public class BaseTest : WebTest
     {
