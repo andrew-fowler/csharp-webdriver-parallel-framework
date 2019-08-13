@@ -75,13 +75,7 @@ namespace Web.TestFramework
             var baseUrl = (string)context.Properties["BaseUrl"];
             var commandTimeout = int.Parse((string)context.Properties["CommandTimeout"]);
             var seleniumHost = (string)context.Properties["SeleniumHost"];
-
-            //var executableLocation = "C:\\Program Files\\Mozilla Firefox\\firefox.exe";
-            //var webDriverType = "chrome";
-            //var baseUrl = "https://www.google.com";
-            //var commandTimeout = 60;
-            //var seleniumHost = "http://selenium-service:4444/wd/hub";
-
+            
             var workingDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
             switch (webDriverType)
