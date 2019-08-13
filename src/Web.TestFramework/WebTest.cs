@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Threading;
@@ -75,51 +76,37 @@ namespace Web.TestFramework
             var baseUrl = (string)context.Properties["BaseUrl"];
             var commandTimeout = int.Parse((string)context.Properties["CommandTimeout"]);
             var seleniumHost = (string)context.Properties["SeleniumHost"];
-            
+            var headless = bool.Parse((string)context.Properties["Headless"]);
+
             var workingDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
             switch (webDriverType)
             {
-                case "remotefirefox":
-                    var remoteFirefoxOptions = new FirefoxOptions();
-                    remoteFirefoxOptions.BrowserExecutableLocation = executableLocation;
-                    remoteFirefoxOptions.AddArguments(new string[]
-                    {
-                        "--headless"
-                    });
-                    WebTest.factory = new RemoteDriverFactory(new Uri(seleniumHost), remoteFirefoxOptions.ToCapabilities(), TimeSpan.FromSeconds(commandTimeout));
-                    break;
-                case "remotechrome":
-                    var remoteChromeOptions = new ChromeOptions();
-                    remoteChromeOptions.AddArguments(new string[]
-                    {
-                        "--no-sandbox",
-                        "--headless",
-                        "--disable-gpu"
-                    });
-                    WebTest.factory = new RemoteDriverFactory(new Uri(seleniumHost), remoteChromeOptions.ToCapabilities(), TimeSpan.FromSeconds(commandTimeout));
-                    break;
                 case "firefox":
                     var firefoxOptions = new FirefoxOptions();
                     firefoxOptions.BrowserExecutableLocation = executableLocation;
                     firefoxOptions.AddArguments(new string[]
                     {
-                        "--headless"
                     });
+                    if (headless)
+                        firefoxOptions.AddArgument("--headless");
                     WebTest.factory = new FirefoxDriverFactory(workingDirectory, firefoxOptions, TimeSpan.FromSeconds(commandTimeout));
                     break;
                 case "chrome":
-                default:
                     var chromeOptions = new ChromeOptions();
-                    chromeOptions.AddArguments(new string[]
+                    var args = new List<string>()
                     {
                         "--no-sandbox",
-                        //"--headless",
-                        "--disable-gpu"
-                    });
+                        "--disable-gpu",
+                    };
+                    if (headless)
+                        args.Add("--headless");
+                    chromeOptions.AddArguments(args.ToArray());
 
                     WebTest.factory = new ChromeDriverFactory(workingDirectory, chromeOptions, TimeSpan.FromSeconds(commandTimeout));
                     break;
+                default:
+                    throw new ArgumentException($"Driver type specified in config ('{webDriverType}') not recognised.");
             }
 
             WebTest.baseUrl = new Uri(baseUrl);
