@@ -14,36 +14,6 @@ namespace Web.TestFramework
     [TestClass]
     public class WebTest
     {
-        private class WebDriverWrapper
-        {
-            private IWebDriver wrappedDriver;
-            private IWebDriverFactory factory;
-
-            public WebDriverWrapper(IWebDriverFactory factory)
-            {
-                this.factory = factory ?? throw new ArgumentNullException(nameof(factory));
-            }
-
-            public IWebDriver WrappedDriver
-            {
-                get
-                {
-                    if (this.wrappedDriver == null)
-                    {
-                        this.wrappedDriver = this.factory.Create();
-                    }
-
-                    return this.wrappedDriver;
-                }
-            }
-
-            public void DisposeWrapped()
-            {
-                this.wrappedDriver.Dispose();
-                this.wrappedDriver = null;
-            }
-        }
-
         private static IWebDriverFactory factory;
         private static Uri baseUrl;
         private static ThreadLocal<WebDriverWrapper> driver = new ThreadLocal<WebDriverWrapper>(() => new WebDriverWrapper(factory));
@@ -68,7 +38,6 @@ namespace Web.TestFramework
 
         public static void AssemblyInitialize(TestContext context)
         {
-
             var executableLocation = (string)context.Properties["ExecutableLocation"];
             var webDriverType = (string)context.Properties["WebDriver"];
             var baseUrl = (string)context.Properties["BaseUrl"];

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 
 namespace Web.Tests.Model
 {
@@ -13,7 +10,7 @@ namespace Web.Tests.Model
 
         public IWebElement Doodle
         {
-            get { return this.Driver.FindElement(By.XPath(@"//*[@id=""hplogo""]")); }
+            get { return Driver.FindElement(By.XPath(@"//*[@id=""hplogo""]")); }
         }
     }
 }

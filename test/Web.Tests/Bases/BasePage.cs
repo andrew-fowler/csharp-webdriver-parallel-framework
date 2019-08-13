@@ -1,5 +1,4 @@
-﻿using System;
-using Web.TestFramework;
+﻿using Web.TestFramework;
 using OpenQA.Selenium;
 
 namespace Web.Tests

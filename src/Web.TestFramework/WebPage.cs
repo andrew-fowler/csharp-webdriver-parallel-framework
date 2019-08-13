@@ -9,7 +9,7 @@ namespace Web.TestFramework
 
         protected IWebDriver Driver
         {
-            get { return this.driver; }
+            get { return driver; }
         }
         
         public WebPage(IWebDriver driver)
