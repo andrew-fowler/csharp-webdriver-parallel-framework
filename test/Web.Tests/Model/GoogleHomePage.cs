@@ -7,7 +7,7 @@ namespace Web.Tests.Model
 {
     public class GoogleHomePage : BasePage
     {
-        public GoogleHomePage(IWebDriver driver, Uri baseUrl, string path) : base(driver, baseUrl, path)
+        public GoogleHomePage(IWebDriver driver) : base(driver)
         {
         }
 
