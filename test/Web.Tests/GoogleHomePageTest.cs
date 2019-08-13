@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Web.Tests
 {
     [TestClass]
-    public class GoogleHomePageTest : BaseTest
+    public class GoogleHomePageTest : WebTest
     {
         private void ExampleTestBehaviour() {
             Driver.Navigate().GoToUrl(BaseUrl);
