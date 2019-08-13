@@ -16,7 +16,7 @@ namespace Web.TestFramework
     {
         private class WebDriverWrapper
         {
-            private IWebDriver wrapped;
+            private IWebDriver wrappedDriver;
             private IWebDriverFactory factory;
 
             public WebDriverWrapper(IWebDriverFactory factory)
@@ -24,28 +24,27 @@ namespace Web.TestFramework
                 this.factory = factory ?? throw new ArgumentNullException(nameof(factory));
             }
 
-            public IWebDriver Wrapped
+            public IWebDriver WrappedDriver
             {
                 get
                 {
-                    if (this.wrapped == null)
+                    if (this.wrappedDriver == null)
                     {
-                        this.wrapped = this.factory.Create();
+                        this.wrappedDriver = this.factory.Create();
                     }
 
-                    return this.wrapped;
+                    return this.wrappedDriver;
                 }
             }
 
             public void DisposeWrapped()
             {
-                this.wrapped.Dispose();
-                this.wrapped = null;
+                this.wrappedDriver.Dispose();
+                this.wrappedDriver = null;
             }
         }
 
         private static IWebDriverFactory factory;
-        private static DriverService service;
         private static Uri baseUrl;
         private static ThreadLocal<WebDriverWrapper> driver = new ThreadLocal<WebDriverWrapper>(() => new WebDriverWrapper(factory));
 
@@ -53,7 +52,7 @@ namespace Web.TestFramework
         {
             get
             {
-                return WebTest.driver.Value.Wrapped;
+                return driver.Value.WrappedDriver;
             }
         }
 
@@ -61,13 +60,12 @@ namespace Web.TestFramework
         {
             get
             {
-                return WebTest.baseUrl;
+                return baseUrl;
             }
         }
 
         public TestContext TestContext { get; set; }
 
-        //[AssemblyInitialize]
         public static void AssemblyInitialize(TestContext context)
         {
 
@@ -123,7 +121,7 @@ namespace Web.TestFramework
             driver.Value.DisposeWrapped();
         }
 
-        //[AssemblyCleanup]
+        
         public static void AssemblyCleanup()
         {
             driver.Dispose();
