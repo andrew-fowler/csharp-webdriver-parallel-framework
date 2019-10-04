@@ -29,6 +29,8 @@ namespace Web.TestFramework.Factories
             desiredCapabilities.SetCapability("browserstack.user", (string)context.Properties["BrowserstackUser"]);
             desiredCapabilities.SetCapability("browserstack.key", (string)context.Properties["BrowserstackKey"]);
             desiredCapabilities.SetCapability("name", "Prototype");
+            desiredCapabilities.SetCapability("browserstack.debug", "true");
+            desiredCapabilities.SetCapability("browserstack.local", "true");
             _capabilities = desiredCapabilities;
 
             _host = new Uri((string)context.Properties["BrowserstackHost"]);
@@ -37,7 +39,9 @@ namespace Web.TestFramework.Factories
 
         public IWebDriver Create()
         {
-            return new RemoteWebDriver(_host, _capabilities, _commandTimeout);
+            var driver = new RemoteWebDriver(_host, _capabilities, _commandTimeout);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
+            return driver;
         }
     }
 }
