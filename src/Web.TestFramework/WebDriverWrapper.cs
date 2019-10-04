@@ -7,14 +7,14 @@ namespace Web.TestFramework
     public class WebDriverWrapper
     {
         private IWebDriver _wrappedDriver;
-        private IWebDriverFactory factory;
+        private IWebDriverFactory _factory;
 
         public WebDriverWrapper(IWebDriverFactory factory)
         {
-            this.factory = factory ?? throw new ArgumentNullException(nameof(factory));
+            _factory = factory ?? throw new ArgumentNullException(nameof(factory));
         }
 
-        public IWebDriver WrappedDriver => _wrappedDriver ?? (_wrappedDriver = factory.Create());
+        public IWebDriver WrappedDriver => _wrappedDriver ?? (_wrappedDriver = _factory.Create());
 
         public void DisposeWrapped()
         {
