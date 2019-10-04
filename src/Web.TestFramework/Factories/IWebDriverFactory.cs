@@ -1,7 +1,6 @@
-﻿using System;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 
-namespace Web.TestFramework
+namespace Web.TestFramework.Factories
 {
     public interface IWebDriverFactory
     {

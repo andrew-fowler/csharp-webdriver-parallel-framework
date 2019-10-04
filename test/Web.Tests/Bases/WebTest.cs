@@ -1,9 +1,8 @@
 ﻿using System.Diagnostics;
-using Web.TestFramework;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Web.TestFramework.Bases;
 
-
-namespace Web.Tests
+namespace Web.Tests.Bases
 {
     public class WebTest : BaseTest
     {

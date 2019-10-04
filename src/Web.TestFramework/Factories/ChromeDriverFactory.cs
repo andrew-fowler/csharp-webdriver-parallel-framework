@@ -2,24 +2,24 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
-namespace Web.TestFramework
+namespace Web.TestFramework.Factories
 {
     public class ChromeDriverFactory : IWebDriverFactory
     {
-        private readonly string driverDirectory;
-        private readonly ChromeOptions options;
-        private readonly TimeSpan commandTimeout;
+        private readonly string _driverDirectory;
+        private readonly ChromeOptions _options;
+        private readonly TimeSpan _commandTimeout;
 
         public ChromeDriverFactory(string driverDirectory, ChromeOptions options, TimeSpan commandTimeout)
         {
-            this.driverDirectory = driverDirectory ?? throw new ArgumentNullException(nameof(driverDirectory));
-            this.options = options ?? throw new ArgumentNullException(nameof(options));
-            this.commandTimeout = commandTimeout;
+            _driverDirectory = driverDirectory ?? throw new ArgumentNullException(nameof(driverDirectory));
+            _options = options ?? throw new ArgumentNullException(nameof(options));
+            _commandTimeout = commandTimeout;
         }
 
         public IWebDriver Create()
         {
-            return new ChromeDriver(this.driverDirectory, this.options, this.commandTimeout);
+            return new ChromeDriver(_driverDirectory, _options, _commandTimeout);
         }
     }
 }

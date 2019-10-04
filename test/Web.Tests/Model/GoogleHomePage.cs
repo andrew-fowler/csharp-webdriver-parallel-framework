@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using Web.Tests.Bases;
 
 namespace Web.Tests.Model
 {
@@ -8,9 +9,6 @@ namespace Web.Tests.Model
         {
         }
 
-        public IWebElement Doodle
-        {
-            get { return Driver.FindElement(By.XPath(@"//*[@id=""hplogo""]")); }
-        }
+        public IWebElement Doodle => Driver.FindElement(By.XPath(@"//*[@id='hplogo']"));
     }
 }

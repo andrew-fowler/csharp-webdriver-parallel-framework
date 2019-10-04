@@ -1,20 +1,15 @@
 ﻿using System;
 using OpenQA.Selenium;
 
-namespace Web.TestFramework
+namespace Web.TestFramework.Bases
 {
     public class BasePage
     {
-        private readonly IWebDriver driver;
+        protected IWebDriver Driver { get; }
 
-        protected IWebDriver Driver
-        {
-            get { return driver; }
-        }
-        
         public BasePage(IWebDriver driver)
         {
-            this.driver = driver ?? throw new ArgumentNullException(nameof(driver));
+            Driver = driver ?? throw new ArgumentNullException(nameof(driver));
         }
     }
 }

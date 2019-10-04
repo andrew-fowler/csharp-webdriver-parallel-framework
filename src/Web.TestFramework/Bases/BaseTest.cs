@@ -7,32 +7,21 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
+using Web.TestFramework.Factories;
 
 [assembly: Parallelize(Workers = 0, Scope = ExecutionScope.MethodLevel)]
-namespace Web.TestFramework
+namespace Web.TestFramework.Bases
 {
     [TestClass]
     public class BaseTest
     {
-        private static IWebDriverFactory factory;
-        private static Uri baseUrl;
-        private static ThreadLocal<WebDriverWrapper> driver = new ThreadLocal<WebDriverWrapper>(() => new WebDriverWrapper(factory));
+        private static IWebDriverFactory _factory;
+        private static Uri _baseUrl;
+        private static ThreadLocal<WebDriverWrapper> _driver = new ThreadLocal<WebDriverWrapper>(() => new WebDriverWrapper(_factory));
 
-        public IWebDriver Driver
-        {
-            get
-            {
-                return driver.Value.WrappedDriver;
-            }
-        }
+        public IWebDriver Driver => _driver.Value.WrappedDriver;
 
-        public Uri BaseUrl
-        {
-            get
-            {
-                return baseUrl;
-            }
-        }
+        public Uri BaseUrl => _baseUrl;
 
         public TestContext TestContext { get; set; }
 
@@ -57,7 +46,7 @@ namespace Web.TestFramework
                     });
                     if (headless)
                         firefoxOptions.AddArgument("--headless");
-                    BaseTest.factory = new FirefoxDriverFactory(workingDirectory, firefoxOptions, TimeSpan.FromSeconds(commandTimeout));
+                    _factory = new FirefoxDriverFactory(workingDirectory, firefoxOptions, TimeSpan.FromSeconds(commandTimeout));
                     break;
                 case "chrome":
                     var chromeOptions = new ChromeOptions();
@@ -70,13 +59,13 @@ namespace Web.TestFramework
                         args.Add("--headless");
                     chromeOptions.AddArguments(args.ToArray());
 
-                    BaseTest.factory = new ChromeDriverFactory(workingDirectory, chromeOptions, TimeSpan.FromSeconds(commandTimeout));
+                    _factory = new ChromeDriverFactory(workingDirectory, chromeOptions, TimeSpan.FromSeconds(commandTimeout));
                     break;
                 default:
                     throw new ArgumentException($"Driver type specified in config ('{webDriverType}') not recognised.");
             }
 
-            BaseTest.baseUrl = new Uri(baseUrl);
+            _baseUrl = new Uri(baseUrl);
         }
 
         [TestInitialize]
@@ -87,13 +76,13 @@ namespace Web.TestFramework
         [TestCleanup]
         public virtual void TestCleanup()
         {
-            driver.Value.DisposeWrapped();
+            _driver.Value.DisposeWrapped();
         }
 
         
         public static void AssemblyCleanup()
         {
-            driver.Dispose();
+            _driver.Dispose();
         }
     }
 }

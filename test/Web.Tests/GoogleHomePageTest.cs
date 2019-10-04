@@ -1,5 +1,6 @@
 using Web.Tests.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Web.Tests.Bases;
 
 
 namespace Web.Tests

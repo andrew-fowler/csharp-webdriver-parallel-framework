@@ -1,11 +1,12 @@
 ﻿using OpenQA.Selenium;
 using System;
+using Web.TestFramework.Factories;
 
 namespace Web.TestFramework
 {
     public class WebDriverWrapper
     {
-        private IWebDriver wrappedDriver;
+        private IWebDriver _wrappedDriver;
         private IWebDriverFactory factory;
 
         public WebDriverWrapper(IWebDriverFactory factory)
@@ -13,23 +14,12 @@ namespace Web.TestFramework
             this.factory = factory ?? throw new ArgumentNullException(nameof(factory));
         }
 
-        public IWebDriver WrappedDriver
-        {
-            get
-            {
-                if (wrappedDriver == null)
-                {
-                    wrappedDriver = factory.Create();
-                }
-
-                return wrappedDriver;
-            }
-        }
+        public IWebDriver WrappedDriver => _wrappedDriver ?? (_wrappedDriver = factory.Create());
 
         public void DisposeWrapped()
         {
-            wrappedDriver.Dispose();
-            wrappedDriver = null;
+            _wrappedDriver.Dispose();
+            _wrappedDriver = null;
         }
     }
 }

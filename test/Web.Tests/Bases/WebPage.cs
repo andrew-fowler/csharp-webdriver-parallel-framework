@@ -1,7 +1,8 @@
-﻿using Web.TestFramework;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
+using Web.TestFramework;
+using Web.TestFramework.Bases;
 
-namespace Web.Tests
+namespace Web.Tests.Bases
 {
     public class WebPage : BasePage
     {
