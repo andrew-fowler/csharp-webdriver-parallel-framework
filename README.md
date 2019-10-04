@@ -11,7 +11,9 @@ The Test project should only be required to have knowledge of the tests & system
 
 Something along the lines of
 
-`"C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe" Web.Tests.dll /Settings:default.runsettings`
+```
+"C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe" .\test\Web.Tests\bin\Debug\netcoreapp2.1\Web.Tests.dll /Settings:.\test\Web.Tests\default.runsettings
+```
 
 ### TODO
 
