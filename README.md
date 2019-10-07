@@ -1,11 +1,13 @@
-# csharp-webdriver-parallel-framework
+# C# WebDriver Bootstrap
 
-This is a basic bootstrap for Parallelised WebDriver testing with C#
+## Summary
+
+This is a bootstrap for cheaply setting up parallelised WebDriver testing with C#, to make use of local and remote Grids (e.g. BrowserStack, Saucelabs).
 
 ## Aim
 
 The Framework and Test projects should be separated, with all possible parallelisation scaffolding and driver management contained within the Framework.  
-The Test project should only be required to have knowledge of the tests & system under test, while retaining the capability to define it's own parallelisation options.' 
+The Test project should only be required to have knowledge of the tests & system under test, while retaining the capability to define it's own parallelisation options.
 
 ## CLI
 
@@ -17,9 +19,9 @@ Something along the lines of
 
 ### TODO
 
-- Add in a Saucelabs Driver
+- Add in a Saucelabs Driver with API integrations
 - Performance test Worker count variability
-- Add in CLI/Pipeline usage
+- Add in CLI/Pipeline usage examples
 - Add in Categorisation examples
 - Add in Config rewrite sentinels
 - Add in X-Browser specifications (e.g. | Run All | In Chrome latest | In Firefox latest | In Edge latest |)
