@@ -1,9 +1,10 @@
 ﻿using System;
-using System.IO;
-using System.Reflection;
+using System.Net;
+using System.Text;
 using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Remote;
 using Web.TestFramework.Factories;
 
 [assembly: Parallelize(Workers = 0, Scope = ExecutionScope.MethodLevel)]
@@ -32,7 +33,6 @@ namespace Web.TestFramework.Bases
                 case "remote":
                     _factory = new BrowserstackDriverFactory(context);
                     break;
-
                 case "firefox":
                     _factory = new FirefoxDriverFactory(context);
                     break;
@@ -54,6 +54,31 @@ namespace Web.TestFramework.Bases
         [TestCleanup]
         public virtual void TestCleanup()
         {
+            if ((string) TestContext.Properties["WebDriver"] == "remote")
+            {
+                if (TestContext.CurrentTestOutcome != UnitTestOutcome.Passed)
+                {
+                    var reqString = "{\"status\":\"failed\", \"reason\":\"\"}";
+
+                    var requestData = Encoding.UTF8.GetBytes(reqString);
+                    var myUri = new Uri(
+                        $"https://www.browserstack.com/automate/sessions/{ ((RemoteWebDriver)Driver).SessionId.ToString()}.json");
+                    var myWebRequest = WebRequest.Create(myUri);
+                    var myHttpWebRequest = (HttpWebRequest) myWebRequest;
+                    myWebRequest.ContentType = "application/json";
+                    myWebRequest.Method = "PUT";
+                    myWebRequest.ContentLength = requestData.Length;
+                    using (var st = myWebRequest.GetRequestStream()) st.Write(requestData, 0, requestData.Length);
+
+                    var myNetworkCredential = new NetworkCredential((string)TestContext.Properties["BrowserstackBrowser"], (string)TestContext.Properties["BrowserstackKey"]);
+                    var myCredentialCache = new CredentialCache {{myUri, "Basic", myNetworkCredential}};
+                    myHttpWebRequest.PreAuthenticate = true;
+                    myHttpWebRequest.Credentials = myCredentialCache;
+
+                    myWebRequest.GetResponse().Close();
+                }
+            }
+
             _driver.Value.DisposeWrapped();
         }
 
