@@ -31,6 +31,8 @@ namespace Web.TestFramework.Factories
             desiredCapabilities.SetCapability("name", "Prototype");
             desiredCapabilities.SetCapability("browserstack.debug", "true");
             desiredCapabilities.SetCapability("browserstack.local", "true");
+            desiredCapabilities.SetCapability("browserstack.console", "errors");
+            desiredCapabilities.SetCapability("browserstack.networkLogs", "true");
             _capabilities = desiredCapabilities;
 
             _host = new Uri((string)context.Properties["BrowserstackHost"]);
