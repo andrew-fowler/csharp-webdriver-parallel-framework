@@ -17,6 +17,10 @@ Something along the lines of
 "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe" .\test\Web.Tests\bin\Debug\netcoreapp2.1\Web.Tests.dll /Settings:.\test\Web.Tests\default.runsettings
 ```
 
+### Issues
+
+In the IDE, the user has to manually specify the runsettings using `Test > Test Settings > Select Test Settings File`
+
 ### TODO
 
 - Add in a Saucelabs Driver with API integrations
