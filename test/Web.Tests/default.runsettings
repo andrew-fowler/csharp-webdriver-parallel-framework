@@ -10,7 +10,7 @@
 
   <TestRunParameters>
     <!-- WebDriver: The type of driver to use for the test run.  Accepts: (chrome|firefox|remote) -->
-    <Parameter name="WebDriver" value="remote" />
+    <Parameter name="WebDriver" value="chrome" />
     <Parameter name="BaseUrl" value="https://www.google.com" />
     <Parameter name="ExecutableLocation" value="C:\Program Files\Mozilla Firefox\firefox.exe" />
     <Parameter name="Headless" value="false" />
@@ -30,7 +30,7 @@
 
   <MSTestV2>
     <Parallelize>
-      <Workers>0</Workers>
+      <Workers>20</Workers>
       <Scope>MethodLevel</Scope>
     </Parallelize>
   </MSTestV2>

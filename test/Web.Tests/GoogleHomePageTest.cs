@@ -66,5 +66,71 @@ namespace Web.Tests
         {
             ExampleTestBehaviour();
         }
+
+        [TestMethod]
+        public void Test_10()
+        {
+            ExampleTestBehaviour();
+        }
+
+        [TestMethod]
+        public void Test_11()
+        {
+            ExampleTestBehaviour();
+        }
+
+        [TestMethod]
+        public void Test_12()
+        {
+            ExampleTestBehaviour();
+        }
+
+        [TestMethod]
+        public void Test_13()
+        {
+            ExampleTestBehaviour();
+        }
+
+        [TestMethod]
+        public void Test_14()
+        {
+            ExampleTestBehaviour();
+        }
+
+        [TestMethod]
+        public void Test_15()
+        {
+            ExampleTestBehaviour();
+        }
+
+        [TestMethod]
+        public void Test_16()
+        {
+            ExampleTestBehaviour();
+        }
+
+        [TestMethod]
+        public void Test_17()
+        {
+            ExampleTestBehaviour();
+        }
+
+        [TestMethod]
+        public void Test_18()
+        {
+            ExampleTestBehaviour();
+        }
+
+        [TestMethod]
+        public void Test_19()
+        {
+            ExampleTestBehaviour();
+        }
+
+        [TestMethod]
+        public void Test_20()
+        {
+            ExampleTestBehaviour();
+        }
     }
 }
